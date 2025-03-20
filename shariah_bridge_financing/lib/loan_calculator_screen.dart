@@ -5,6 +5,7 @@ class LoanCalculatorScreen extends StatefulWidget {
   const LoanCalculatorScreen({super.key});
 
   @override
+  // ignore: library_private_types_in_public_api
   _LoanCalculatorScreenState createState() => _LoanCalculatorScreenState();
 }
 
@@ -45,62 +46,61 @@ class _LoanCalculatorScreenState extends State<LoanCalculatorScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Bridging Loan Calculator')),
+      appBar: AppBar(
+        title: Text('Bridging Loan Calculator'),
+        backgroundColor: Color.fromARGB(0, 25, 119, 116),
+        foregroundColor: Colors.cyan,
+      ),
       body: Expanded(
         flex: 7,
-        child: Container(
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  TextField(
-                      controller: loanAmountController,
-                      decoration:
-                          InputDecoration(labelText: 'Loan Amount (£)')),
-                  TextField(
-                      controller: propertyValueController,
-                      decoration:
-                          InputDecoration(labelText: 'Property Value (£)')),
-                  TextField(
-                      controller: mortgageBalanceController,
-                      decoration:
-                          InputDecoration(labelText: 'Mortgage Balance (£)')),
-                  TextField(
-                      controller: monthlyInterestController,
-                      decoration: InputDecoration(
-                          labelText: 'Monthly Interest Rate (%)')),
-                  TextField(
-                      controller: facilityFeeController,
-                      decoration:
-                          InputDecoration(labelText: 'Facility Fee (%)')),
-                  TextField(
-                      controller: exitFeeController,
-                      decoration: InputDecoration(labelText: 'Exit Fee (%)')),
-                  TextField(
-                      controller: loanTermController,
-                      decoration:
-                          InputDecoration(labelText: 'Loan Term (Months)')),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                      onPressed: calculate, child: Text('Calculate')),
-                  SizedBox(height: 20),
-                  if (result != null) ...[
-                    Text('Total Costs:',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                    for (var entry in result!["Total Costs"].entries)
-                      Text('${entry.key}: £${entry.value}'),
-                    SizedBox(height: 10),
-                    Text('Other Costs:',
-                        style: TextStyle(
-                            fontSize: 18, fontWeight: FontWeight.bold)),
-                    for (var entry in result!["Other Costs"].entries)
-                      Text('${entry.key}: £${entry.value}'),
-                  ]
-                ],
-              ),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                TextField(
+                    controller: loanAmountController,
+                    decoration: InputDecoration(labelText: 'Loan Amount (£)')),
+                TextField(
+                    controller: propertyValueController,
+                    decoration:
+                        InputDecoration(labelText: 'Property Value (£)')),
+                TextField(
+                    controller: mortgageBalanceController,
+                    decoration:
+                        InputDecoration(labelText: 'Mortgage Balance (£)')),
+                TextField(
+                    controller: monthlyInterestController,
+                    decoration: InputDecoration(
+                        labelText: 'Monthly Interest Rate (%)')),
+                TextField(
+                    controller: facilityFeeController,
+                    decoration: InputDecoration(labelText: 'Facility Fee (%)')),
+                TextField(
+                    controller: exitFeeController,
+                    decoration: InputDecoration(labelText: 'Exit Fee (%)')),
+                TextField(
+                    controller: loanTermController,
+                    decoration:
+                        InputDecoration(labelText: 'Loan Term (Months)')),
+                SizedBox(height: 20),
+                ElevatedButton(onPressed: calculate, child: Text('Calculate')),
+                SizedBox(height: 20),
+                if (result != null) ...[
+                  Text('Total Costs:',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  for (var entry in result!["Total Costs"].entries)
+                    Text('${entry.key}: £${entry.value}'),
+                  SizedBox(height: 10),
+                  Text('Other Costs:',
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  for (var entry in result!["Other Costs"].entries)
+                    Text('${entry.key}: £${entry.value}'),
+                ]
+              ],
             ),
           ),
         ),

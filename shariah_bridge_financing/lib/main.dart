@@ -6,9 +6,12 @@ void main() {
 }
 
 class BridgingLoanApp extends StatelessWidget {
+  const BridgingLoanApp({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Bridging Loan Calculator',
       home: LoanCalculatorScreen(),
     );
